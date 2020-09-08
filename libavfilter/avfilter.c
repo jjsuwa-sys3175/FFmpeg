@@ -656,6 +656,12 @@ static const AVOption avfilter_options[] = {
         {"auto", "autodetect a suitable number of threads to use", 0, AV_OPT_TYPE_CONST, {.i64 = 0 }, .flags = FLAGS, .unit = "threads"},
     { "extra_hw_frames", "Number of extra hardware frames to allocate for the user",
         OFFSET(extra_hw_frames), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, FLAGS },
+    { "osr_fallback_method", "Output sample rate fallback method when no exact match found", OFFSET(osr_fallback_method), AV_OPT_TYPE_INT,
+        { .i64 = AVOSRFB_CLOSEST }, AVOSRFB_CLOSEST, AVOSRFB_HIGHEST, FLAGS, "osr_fallback_method" },
+        { "closest", "to the closest one, regardless of higher or lower", 0, AV_OPT_TYPE_CONST, { .i64 = AVOSRFB_CLOSEST }, 0, 0, FLAGS, "osr_fallback_method" },
+        { "higher", "to the closest higher one", 0, AV_OPT_TYPE_CONST, { .i64 = AVOSRFB_HIGHER }, 0, 0, FLAGS, "osr_fallback_method" },
+        { "twice_higher", "to the closest twice higher one", 0, AV_OPT_TYPE_CONST, { .i64 = AVOSRFB_TWICE_HIGHER }, 0, 0, FLAGS, "osr_fallback_method" },
+        { "highest", "to the highest one", 0, AV_OPT_TYPE_CONST, { .i64 = AVOSRFB_HIGHEST }, 0, 0, FLAGS, "osr_fallback_method" },
     { NULL },
 };
 
